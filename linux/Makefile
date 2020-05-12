@@ -18,7 +18,7 @@ OUT_DIR=$(FLUTTER_APP_BUILD_DIR)/linux
 OBJ_DIR=$(OUT_DIR)/obj/$(BUILD)
 
 # Libraries
-FLUTTER_LIB_NAME=flutter_linux_glfw
+FLUTTER_LIB_NAME=flutter_linux_gtk
 FLUTTER_LIB=$(FLUTTER_EPHEMERAL_DIR)/lib$(FLUTTER_LIB_NAME).so
 
 # Tools
@@ -48,16 +48,11 @@ ALL_LIBS_OUT=$(FLUTTER_LIB_OUT) \
 # intermediate build files will be based on the source path, which will cause
 # issues if they start with one or more '../'s.
 WRAPPER_ROOT=$(abspath $(FLUTTER_EPHEMERAL_DIR)/cpp_client_wrapper_glfw)
-WRAPPER_SOURCES= \
-	$(WRAPPER_ROOT)/flutter_engine.cc \
-	$(WRAPPER_ROOT)/flutter_window_controller.cc \
-	$(WRAPPER_ROOT)/plugin_registrar.cc \
-	$(WRAPPER_ROOT)/engine_method_result.cc
+WRAPPER_SOURCES=
 
 # Use abspath for extra sources, which may also contain relative paths (see
 # note above about WRAPPER_ROOT).
-SOURCES=main.cc window_configuration.cc \
-	flutter/generated_plugin_registrant.cc \
+SOURCES=main.cc\
 	$(WRAPPER_SOURCES) $(abspath $(EXTRA_SOURCES))
 
 # Headers
